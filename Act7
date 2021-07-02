@@ -1,0 +1,91 @@
+import UIKit
+
+//Para la colección var costo_referencia:[Float] = [8.3,10.5,9.9], aplica el impuesto del 16% a través de recorrer la colección costo_referencia para aplicar el impuesto a cada cantidad.
+
+var costo_referencia:[Float] = [8.3,10.5,9.9]
+func Imp(arreglo:[Float]) -> [Float]
+{
+    var ans:[Float] = []
+    for i in arreglo
+    {
+        ans.append(i*1.16)
+    }
+    return ans
+}
+
+//Crea una función impuesto que reciba como parámetro la colección y regrese aplicado el impuesto a cada cantidad.
+
+print("La cantidad con impuesto es de: \(Imp(arreglo:costo_referencia))")
+
+//Crea la función sumaTres que reciba una función con dos valores a sumar y un segundo parámetro para sumar el tercer número.
+
+    func param(a:Float,b:Float) -> Float
+    {
+        var sum:Float=0
+        sum = a+b
+        return sum
+    }
+    func SumaTres(c:Float, d:Float ) ->Float
+    {
+        var sum1:Float=0
+        sum1=c+d
+        return sum1
+    }
+print("La suma de los tres numeros es de: \(SumaTres(c: param(a: 10, b: 15), d: 20))")
+
+//Funciones personalizadas y genéricos
+
+//Crea una función genérica para intercambiar valores entre dos variables del mismo tipo
+
+    func change<T>(_ a: inout T, _ b: inout T)
+    {
+        let cambio = a
+        a = b
+        b = cambio
+        
+    }
+    var var1 = 10
+    var var2 = 20
+    change(&var1, &var2)
+    print(var1)
+    print(var2)
+
+//Crea la función Transformar que reciba como parámetro una colección de tipo Int var datos = [3,7,9,2] y una función que transforme cada valor de la colección en una operación definida fuera de la función, regresando una colección transformada.
+
+    extension Array
+    {
+        func transformar<T> (first:T, colecc:(T, Element) -> T ) -> T
+        {
+            var ans:T = first
+            for valor in self
+            {
+                ans = colecc(ans, valor)
+            }
+            return ans
+        }
+    }
+
+var datos = [3,7,9,2]
+var transf = ["Enero","Febrero","Marzo","Abril"]
+    datos.transformar(first: 0) {(Enero,Febrero) in 3 + 7}
+    transf.transformar(first: "Marzo") {(Marzo,Abril) in 9 + 2}
+    print(datos)
+
+//Aplica la función de librería de Swift map para la colección var precios = [4.2, 5.3, 8.2, 4.5] y aplica el impuesto de 16% y asígnala a la variable impuesto.
+
+    var precios = [4.2, 5.3, 8.2, 4.5]
+    var impuesto = precios.map
+    {
+        a in return a*1.16
+    }
+    impuesto
+
+    //Aplica la función de la librería de Swift filter para la colección resultante impuesto del paso A, en donde obtengas sólo los precios mayores a 6.0 y asígnalos a la variable precio_menor.
+
+    var precio_menor = impuesto.filter
+    {
+        A in A>6.0
+    }
+    precio_menor
+    
+    
